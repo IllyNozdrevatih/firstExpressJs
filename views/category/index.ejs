@@ -1,0 +1,21 @@
+<%- include('../layout/header'); -%>
+<h1>Categories</h1>
+    <% if(categories){ %>
+        <div class="row">
+            <ul class="list-group list-group-flush w-100">                
+            <% for (category of categories){%>
+                <li class="list-group-item w-100 d-flex justify-content-between align-items-center">
+                  <h3 class="w-50"><%=category.title%></h3>
+                  <a class="w-20" href="/category/update/<%=category.id%>">update</a>
+                  <form action="/category/delete" method="POST">
+                      <button class="btn btn-danger w-30">Delete</button>
+                      <input type="hidden" name="catId" value="<%=category.id%>">
+                  </form>
+                </li>
+            <%}%>
+          </ul>
+        </div>
+    <% } else { %>
+        <h2>No Categories</h2>
+    <% }%>
+<%- include('../layout/footer'); -%>

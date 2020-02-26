@@ -1,0 +1,33 @@
+<%- include('../layout/header'); -%>
+<h1>Articles</h1>
+    <% if(articles){ %>
+        <div class="row">
+            <% for (article of articles){%>
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <img src="<%= article.imageUrl %>" class="card-img-top h-75" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= article.title %></h5>
+                        </div>
+                        <% if(article.categories){%>
+                        <ul class="list-group list-group-flush">
+                            <% for(category of article.categories){ %>
+                                <li class="list-group-item"><%= category.title %></li>
+                            <%}%>
+                        </ul>
+                        <%}%>
+                        <a class="btn btn-primary mb-2" href="article/update/<%= article.id %>">Update</a>
+                        <a class="btn btn-primary mb-2" href="article/<%= article.id %>">Learn more</a>
+                        <form action="article/delete" method="post">
+                            <button class="btn btn-danger w-100">Delete</button>
+                            <input type="hidden" name="artId" value="<%= article.id %>">
+                        </form>
+                    </div>
+                </div>
+            <%}%>
+        </div>
+    <% } else { %>
+        <h2>No articles</h2>
+    <% }%>
+
+<%- include('../layout/footer'); -%>

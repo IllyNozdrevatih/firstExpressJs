@@ -1,0 +1,21 @@
+<%- include('../layout/header'); -%>
+<h1><%= article.title %></h1>
+    <% if(article){ %>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <img src="<%= article.imageUrl %>" class="card-img-top h-75" alt="...">
+                    <% if(article.categories){%>
+                    <ul class="list-group list-group-flush">
+                        <% for(category of article.categories){ %>
+                            <li class="list-group-item"><%= category.title %></li>
+                        <%}%>
+                    </ul>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+    <% } else { %>
+        <h2>No article</h2>
+    <% }%>
+<%- include('../layout/footer'); -%>
